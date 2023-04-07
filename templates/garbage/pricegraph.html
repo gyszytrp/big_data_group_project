@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<!-- <script type="text/javascript" src="second.js"></script> -->
+<script>
+    
+    function getcookie(cname)
+	{
+
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) 
+        {
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        }
+        return null;
+	}
+	function checkradio(){
+		// alert("!");
+		// var qs=document.getElementsByTagName("li");
+		// var correctanswer=["0","3","3",{0:"true",4:"true",5:"true"},"2"]
+        // var mark=0;
+        // return
+		var radios=document.getElementsByTagName("input");
+        // var empty=true;
+        // var emptyls=[]
+        // var markls=[]
+
+
+		// for (var i = 0; i < 3; i++) {
+		// 	var radio=radios[i].checked;
+		// 	alert(radio);
+        var t=60;
+        var tr=document.getElementById("tr")
+			if (radios[0].checked) {
+                tr.innerText="Last 60 days"
+                t=60;
+            }
+            if (radios[1].checked) {
+                tr.innerText="Last 24 hours"
+                t=24;
+            }
+            // if (radios[2].checked) {
+            //     tr.innerHTML="Last 12 hours";
+            //     t=12;
+            // }
+		// }
+		// }
+        setcookie("timerange",t);
+        s="/pricegraph?value="+getcookie("resultlength")+"&tag="+getcookie("worldtrend")+"&time="+t;
+
+        window.location.href=s;
+
+
+        // if(emptyls.length!=0){
+        //     // alert(mark);
+        //     alert("You have not finish question: "+emptyls);
+        //     // window.location.href="./response.html?"+"mark="+encodeURI(mark)+"&correct="+encodeURI(markls);
+        // }else{
+        //     // alert(mark);
+        //     window.location.href="./response.html?"+"mark="+encodeURI(mark)+"&correct="+encodeURI(markls);
+        // }
+		
+	}
+function getkeyword(){
+    var keyword=document.getElementsByTagName("input");
+    // console.log(keyword[0].value);
+    // alert(keyword[0].value);
+
+
+    var key=keyword[3].value;
+    // var expiredays=7;
+    
+    // var d = new Date();
+	// d.setTime(d.getTime()+(expiredays*24*60*60*1000));
+	// var expires = "expires="+d.toGMTString();
+	// 	// document.cookie = NameOfCookie + "=" + cvalue + "; " + expires+"; "+ "domain=localhost";
+	// 	// document.cookie = "test" + "=" + cvalue + "; " + expires+"; "+ "domain=localhost";
+	// document.cookie = "keyword" + "=" + key+ "; " + expires+"; "+ "path=/";
+
+    setcookie("keyword",key);
+
+    s="/hashtagtrend?value="+getcookie("resultlength")+"&tag="+getcookie("worldtrend")+"&keyword="+getcookie("keyword")+"&time="+getcookie("timerange");
+    window.location.href=s;
+        
+    // fetch('getkeyword?value=' + key)
+    //     .then(function(response) { 
+    //         return response.text();
+    //     })
+    //     .then(function(text) {
+    //         console.log(text);
+    //     });
+    // window.location.href="/showtrend";
+}
+
+
+
+function setcookie(key,value){
+    var expiredays=7;
+    var d = new Date();
+    d.setTime(d.getTime()+(expiredays*24*60*60*1000));
+    var expires = "expires="+d.toGMTString();
+    document.cookie = key + "=" + value + "; " + expires+"; "+ "path=/";
+    // document.cookie = key + "=" + value + "; " + expires+"; "+ "domain=localhost";
+
+}
+
+
+function settitle(obj){
+
+    var key=obj;
+    console.log(key.innerText);
+ 
+
+    setcookie("worldtrend",key.innerText)
+
+        
+    if (getcookie("resultlength")==null){
+        setcookie("resultlength",10)
+    }
+
+
+
+    s="/hashtagtrend?value="+getcookie("resultlength")+"&tag="+key.innerText;
+    // alert(s);
+    window.location.href=s;
+
+    // s="/hashtagtrend?value="+l;
+    // window.location.href=s;
+    // fetch('getkeyword?value=' + key.innerText)
+    //     .then(function(response) { 
+    //         return response.text();
+    //     })
+    //     .then(function(text) {
+    //         console.log(text);
+    //     });
+
+
+}
+function displaymore(){
+
+
+    var a=document.cookie;
+    var l=parseInt(getcookie("resultlength"));
+    l=l+5;
+    setcookie("resultlength",l);
+    // alert(l);
+    // fetch('/h?value=' + (l))
+    //     .then(function(response) { 
+    //         return response.text();
+    //     })
+    //     .then(function(text) {
+    //         console.log(text);
+    //     });
+    var key=getcookie("worldtrend");
+    s="/hashtagtrend?value="+l+"&tag="+key;
+    window.location.href=s;
+    
+
+}
+window.onload=function(){
+ 
+		// var key=getcookie("worldtrend");
+		// var worldtrend=document.getElementById("worldtrend");
+        // var keyword=document.getElementById("kw");
+        var tr=document.getElementById("tr")
+        // alert(worldtrend.innerText);
+
+        // worldtrend.innerText="World Trend of ("+key+") related Hashtag"
+        // kw.innerText="Keyword: "+key
+        // if (getcookie("timerange")==7){
+        //     tr.innerText="Last 7 days"
+        // }
+        // if (getcookie("timerange")==12){
+        //     tr.innerText="Last 12 hours"
+        // }
+        if (getcookie("timerange")==24){
+            tr.innerText="Last 24 hours"
+        }
+
+
+
+        if (getcookie("resultlength")==null){
+            setcookie("resultlength",10)
+        }
+        var c1 = document.getElementsByClassName("column1")[0]
+        var c2 = document.getElementsByClassName("column2")[0]
+        var h=42*parseInt(getcookie("resultlength"))+80;
+        h=h+"px";
+        // alert(h);
+        c1.style.height=h;
+        c2.style.height=h;
+
+
+}
+</script>
+
+
+
+
+
+<html>
+        <title>Home</title>
+
+    <link rel="stylesheet" type="text/css" href="css/asm2.css">
+    <header>
+        <nav>
+            <ul>
+                <li><a href='/hashtagtrend'>Home</a></li>
+                <li><a>Hashtag trend</a>
+                        <ul>
+                            <li><a onclick="settitle(this)">Bitcoin</a></li>
+                            <li><a onclick="settitle(this)">Dogecoin</a></li>
+                            <li><a onclick="settitle(this)">Ethereum</a></li>
+                        </ul>
+                </li>
+
+                <li><a href="/populartweet" onclick="check()"> Popular tweet</a>
+
+
+                    <!-- <ul>
+                        <li><a>Vision</a></li>
+                        <li><a>Meet our Staffs</a></li>
+                    </ul> -->
+                </li>
+                <li><a>Price Graph
+                    <ul>
+                        <li><a href='/pricegraph'>Bitcoin</a></li>
+                    </ul>
+                </a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+    <div id="h">
+        <p>Twitter price prediction</p>
+    </div>
+    <body>
+
+        <div class="threecolumn">
+            <div class="column1" id="c1">
+
+                
+
+                <h3>Data Time range</h3>
+                
+                <li>
+
+
+                    <input type="radio" id="male" name="gender" onclick="checkradio()" />
+                    <label class="gender" for="female">Last 60 days</label>
+                </li>
+                <li>
+                    <input type="radio" id="male" name="gender" onclick="checkradio()"/>
+                    <label class="gender" for="male">Last 24 hours</label>
+                </li>
+                <!-- <li>
+                    <input type="radio" id="male" name="gender" onclick="checkradio()"/>
+                    <label class="gender" for="male">Last 12 hours</label>
+                </li> -->
+
+            </div>
+            <div class="column2">
+                    <h3>Price Graph</h3>
+                <!-- <h3>Twitter popularity of (#${tag}) </h3> -->
+                    <ul>
+                        <li><a id="tr">Last 60 days</a></li>
+                        <li><a>Cryptocurrency: Bitcoin</a></li>
+                    </ul>
+
+                    <div>
+                        
+
+                        
+                        
+                        <!-- <canvas id="myChart1"  width="300" height="100" style="border:1px solid #000000;"></canvas> -->
+                        <canvas id="myChart"  width="300" height="100" style="border:1px solid #000000;"></canvas>
+                        
+                    </div>
+                    <!-- <table border="1" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <th>Tweet Content</th>
+                          <th>Like</th>
+                          <th>Comment</th>
+                          <th>Retweet</th>
+                          <th>Popularity</th>
+                          <th>Author</th>
+                          <th>Time(UTC+00:00)</th>
+                        </tr>
+
+                           ${dat} 
+                          
+                      </table> -->
+                      
+            </div>
+        </div>    
+    </body>
+    <footer>
+        Author:Harry
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    ${myscript}
+    <!-- <script>
+        // <block:setup:1>
+        
+
+        const labels = [
+        0, 10, 5, 2, 20, 30, 45, 20,0, 10, 5, 2, 20, 30, 45, 20,0, 10, 5, 2, 20, 30, 45, 20,0, 10, 5, 2, 20, 30, 45, 20
+        ];
+        var x=[0, 10, 5, 2, 20, 30, 45, 20,0, 10, 5, 2, 20, 30, 45, 20,0, 10, 5, 2, 20, 30, 45, 20,0, 10, 5, 2, 20, 30, 45, 20];
+        
+        const data = {
+            labels: labels,
+            datasets: [{
+            label: 'Bitcoin price',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: x,
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+            // === include 'setup' then 'config' above ===
+        
+        var myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+            );
+        
+        
+    </script> -->
+</html>

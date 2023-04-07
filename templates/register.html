@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<style>
+  body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+  
+  input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #555;
+  }
+  
+  </style>
+
+
+<html>
+  <head>
+    <title>New user registration</title>
+  </head>
+  <body>
+    <h1>New user Registration</h1>
+    <form action="/register" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><br><br>
+      <!-- <label for="email">Email:</label> -->
+      <!-- <input type="email" id="email" name="email"><br><br> -->
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password"><br><br>
+      <!-- <label for="confirm_password">Confirm Password:</label> -->
+      <!-- <input type="password" id="confirm_password" name="confirm_password"><br><br> -->
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

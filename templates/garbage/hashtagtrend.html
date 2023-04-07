@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- icon search https://ionic.io/ionicons -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Bitcoin prediction</title>
+    <link rel="stylesheet" href="css/hashTag_style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="navigator">
+            <ul>
+                <li><a href="#">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li><a href="#">
+                        <span class="icon">
+                            <ion-icon name="trending-up-outline"></ion-icon>
+                        </span>
+                        <span class="title">Bitcoin trend</span>
+                    </a>
+                </li>
+                <li><a href="#">
+                        <span class="icon">
+                            <ion-icon name="bar-chart-outline"></ion-icon>
+                        </span>
+                        <span class="title">Graph</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <!-- top search bar -->
+            <div class="topBar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="#Bitcoin">
+                    <ion-icon name="search-outline"></ion-icon>
+                </div>
+            </div>
+
+            <!-- card -->
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <div class="cardTxt">Last</div>
+                        <div class="number">12</div>
+                        <div class="cardTxt">hours</div>
+                    </div>
+                    <div class="iconBox">
+                        <ion-icon name="hourglass-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="cardTxt">Last</div>
+                        <div class="number">24</div>
+                        <div class="cardTxt">hours</div>
+                    </div>
+                    <div class="iconBox">
+                        <ion-icon name="hourglass-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="cardTxt">Last</div>
+                        <div class="number">7</div>
+                        <div class="cardTxt">days</div>
+                    </div>
+                    <div class="iconBox">
+                        <ion-icon name="today-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- details -->
+            <div class="details">
+                <!-- table -->
+                <div class="responseData">
+                    <div class="cardHeader">
+                        <h2>Rankings</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Rank</td>
+                                <td>Tag Name</td>
+                                <td>Amount</td>
+                                <td>Popularity</td>
+                                <td>Link</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <tr>
+                                <td>1</td>
+                                <td>Bitcoin</td>
+                                <td>10</td>
+                                <td><span class="status high">85%</span></td>
+                                <td>url</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- clients -->
+                <div class="rankingDesc">
+                    <div class="cardHeader">
+                        <h2>Hashtag rank of</h2>
+                    </div>
+                    <table>
+                        <tr>
+                            <td>
+                                <ion-icon name="logo-bitcoin"></ion-icon>
+                                <!-- <div class="imgBox">
+                                    <img src="img1.jpg" alt="">
+                                </div> -->
+                            </td>
+                            <td>
+                                <h4>Bitcoin<br><span>95</span></h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <!-- end details -->
+        </div>
+        <!-- end main -->
+    </div>
+    <!-- rendered table body -->
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script>
+        // the manu to toggle the navigation bar
+        let toggle = document.querySelector(".toggle");
+        let navigator = document.querySelector(".navigator");
+        let main = document.querySelector(".main");
+        toggle.onclick = () => {
+            navigator.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+        // time period option
+        let cards = document.querySelectorAll(".cardBox .card");
+        cards.forEach(card => {
+            card.onclick = () => {
+                card.classList.toggle('active');
+                if (card.classList.contains("active")) {
+                    cards.forEach(cardCss => {
+                        if (cardCss != card)
+                            cardCss.classList.remove("active")
+                    })
+                }
+            }
+        })
+
+        /*
+        The rendered table. It reads the hidden DIV which is a list of
+        dictionary containing {rank, name, amount, pop, link}
+        */
+        const ajax_data = (url) => {
+            fetch(url, {
+                method: "GET",
+                mode: "cors",
+                cache: "no-cache",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(response => response.json())
+                .then(tableData => {
+                    let tbody = document.querySelector(".responseData table tbody");
+                    tbody.innerHTML = "";
+                    tableData.forEach(row => {
+                        let appendRow = `<tr><td>${row.rank}</td>
+                        <td>${row.name}</td>
+                        <td>${row.amount}</td>`;
+                        let popularity = parseFloat(row.pop) / 100;
+                        let popEl = document.createElement("span");
+                        popEl.innerHTML = row.pop;
+                        popEl.classList.add("status");
+                        if (popularity >= 0.1) {
+                            popEl.classList.add("high");
+                        }
+                        else if (popularity >= 0.01) {
+                            popEl.classList.add("medium");
+                        }
+                        else if (popularity < 0.01) {
+                            popEl.classList.add("low");
+                        }
+                        appendRow += `<td>${popEl.outerHTML}</td><td>${row.link}</td></tr>`;
+                        tbody.innerHTML += appendRow;
+                    })
+                    // click on the row to navigate to the link
+                    tbody.querySelectorAll("tr").forEach(row => {
+                        row.addEventListener("click", function (e) {//e.currentTarget === this
+                            window.open(this.lastChild.innerText)
+                        })
+                    })
+                });
+        }
+
+        ajax_data('/trend');
+
+    </script>
+</body>
+
+</html>

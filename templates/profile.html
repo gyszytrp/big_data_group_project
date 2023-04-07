@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- icon search https://ionic.io/ionicons -->
+
+
+
+<style>
+
+    a {
+    text-decoration: none;
+    }
+
+</style>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- <link rel="stylesheet" href="css/home.css"> -->
+</head>
+
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    
+    <style>
+        
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Ubuntu", sans-serif;
+        }
+
+        :root {
+        --blue: #287bff;
+        --grey: #f5f5f5;
+        --black1: #222;
+        --black2: #999;
+        }
+        body {
+        min-height: 100vh;
+        overflow-x: hidden;
+        }
+
+      body {
+        font-family: sans-serif;
+        background-color: #f5f5f5;
+      }
+
+    /* top bar */
+    .topBar{
+    width: 100%;
+    background: var(--blue);
+    display: flex;
+    }
+
+    .topBar a {
+    text-decoration: none;
+    color: white;
+    display: inline-flex;
+    padding: 0 5px;
+    }
+    .topBar a .icon{
+    position: relative;
+    display: block;
+    line-height: 55px;
+    text-align: center;
+    font-size: 1em;
+    }
+
+    .topBar a .title{
+    position: relative;
+    display: block;
+    padding: 0px 5px;
+    line-height: 50px;
+    text-align: start;
+    white-space: nowrap;
+    }
+
+    .topBar > div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    }
+
+
+
+      h1 {
+        text-align: center;
+        margin-top: 30px;
+        color: #008cba;
+      }
+      form {
+        margin: 0 auto;
+        width: 80%;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th {
+        text-align: left;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        color: white;
+      }
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #555;
+      }
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+      input[type="submit"] {
+        display: block;
+        margin: 20px auto 0;
+        padding: 10px 20px;
+        background-color: #008cba;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      input[type="submit"]:hover {
+        background-color: #006d96;
+      }
+        .navigator ul {
+        list-style: none;
+        overflow: hidden;
+        }
+        .navigator ul li {
+        float: left;
+        }
+
+        .navigator ul li:hover,
+        .navigator ul li.active {
+        background: white;
+        }
+        .navigator ul li:hover a,
+        .navigator ul li.active a {
+        color: var(--blue);
+        }
+
+
+        /* search bar */
+        .search {
+        position: relative;
+        padding: 5px;
+        width: 100%;
+        }
+        .search input {
+        width: 100%;
+        /* transition: ease-in-out, width 0.35s ease-in-out;
+        float: right; */
+        height: 40px;
+        border-radius: 40px;
+        padding: 5px 20px;
+        font-size: 18px;
+        outline: none;
+        border: 1px solid var(--black2);
+        }
+        /* .search input:focus {
+        width: 120%;
+        } */
+        .search ion-icon {
+        position: absolute;
+        top: 13px;
+        right: 10px;
+        font-size: 1.5em;
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+    <div class="topBar">
+        <a href='/'>
+            <span class="icon">
+                <ion-icon name="trending-up-outline"></ion-icon>
+            </span>
+            <span class="title">Boardgame Geek</span>
+        </a>
+
+        <div>
+            <div class="navigator">
+                <ul>
+                    <li><a href="/userprofile">
+                        <span class="icon">
+                            <ion-icon name="body-outline"></ion-icon>
+                        </span>
+                        <span class="title">${username}</span>
+                        </a>
+                    </li>
+                    <li><a href="/logout">
+                            <span class="icon">
+                                <ion-icon name="remove-outline"></ion-icon>
+                            </span>
+                            <span class="title">Logout</span>
+                        </a>
+                    </li>
+                    <li><a href="/change_interest">
+                            <span class="icon">
+                                <ion-icon name="reorder-two-outline"></ion-icon>
+                            </span>
+                            <span class="title">Change your interest</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- top search bar -->
+            <div class="search">
+              <input type="text" id="searchBar1" placeholder="#Civilization6">
+                  <ion-icon name="search-outline"></ion-icon>
+          </div>
+        </div>
+    </div>
+    <!-- end of top bar -->
+
+
+
+    <style>
+      body{font-family:sans-serif;margin:0;padding:0;background-image:linear-gradient(135deg,#6ec1e4,#f5f5f5);display:flex;flex-direction:column;min-height:100vh;}table{width:80%;margin:50px auto;border-collapse:collapse;}thead{background-color:#4a90e2;color:white;}th,td{padding:10px;text-align:center;border:1px solid #ddd;}tr:nth-child(even){background-color:#f2f2f2;}tr:hover{background-color:#ddd;}button{margin:20px auto;padding:10px 20px;font-size:16px;background-color:#4a90e2;color:white;border:none;border-radius:5px;cursor:pointer;}button:hover{background-color:#3b7ac9;}footer{margin-top:auto;}
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Game Name</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Add table rows with item name and rating here -->
+        ${user_rate_games}
+
+        <!-- <tr>
+          <td>item</td>
+          <td>4.5</td>
+        </tr>
+
+        <tr data-href="https://example.com/link2">
+          <td>Item 2</td>
+          <td>4.8</td>
+        </tr> -->
+
+
+      </tbody>
+    </table>
+    <footer>
+      <button onclick="window.location.href='/home'">Back to Home</button>
+    </footer>    
+
+
+    <script>
+
+      function search() {
+      var searchBar = document.getElementById("searchBar1");
+      var searchTerm = searchBar.value;
+      if (searchTerm.trim() !== "") {
+          window.location.href = "/search?keyword=" + searchTerm;
+      }
+      }
+
+      document.getElementById("searchBar1").addEventListener("keypress", function(event) {
+      if (event.keyCode === 13) {
+          search();
+      }
+      });
+      </script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

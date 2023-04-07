@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game List</title>
+
+    
+
+    <style>
+      /* Add styles to display the game list */
+      .game-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+      }
+      .game-card {
+        width: 300px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        border-radius: 5px;
+      }
+      .game-card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      }
+      .game-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px 5px 0 0;
+      }
+      .game-card h3 {
+        text-align: center;
+        margin: 10px 0;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Add a div to contain the game list -->
+    <div class="game-list"></div>
+
+    <script>
+      // Define an array of games with their name and image URLs
+      const games = [
+        { name: 'Assassin\'s Creed Valhalla', image: 'https://www.example.com/images/ac-valhalla.jpg' },
+        { name: 'Cyberpunk 2077', image: 'https://www.example.com/images/cyberpunk-2077.jpg' },
+        { name: 'Red Dead Redemption 2', image: 'https://www.example.com/images/red-dead-redemption-2.jpg' },
+        { name: 'The Last of Us Part II', image: 'https://www.example.com/images/the-last-of-us-part-ii.jpg' },
+        { name: 'Ghost of Tsushima', image: 'https://www.example.com/images/ghost-of-tsushima.jpg' },
+        { name: 'Death Stranding', image: 'https://www.example.com/images/death-stranding.jpg' },
+      ];
+
+      // Add each game to the game list div
+      const gameListDiv = document.querySelector('.game-list');
+      games.forEach(game => {
+        const gameCardDiv = document.createElement('div');
+        gameCardDiv.classList.add('game-card');
+        const gameImg = document.createElement('img');
+        gameImg.src = game.image;
+        const gameTitle = document.createElement('h3');
+        gameTitle.textContent = game.name;
+        gameCardDiv.appendChild(gameImg);
+        gameCardDiv.appendChild(gameTitle);
+        gameListDiv.appendChild(gameCardDiv);
+      });
+    </script>
+  </body>
+</html>

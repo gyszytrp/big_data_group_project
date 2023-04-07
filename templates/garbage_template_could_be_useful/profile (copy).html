@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- icon search https://ionic.io/ionicons -->
+
+
+
+<style>
+
+    a {
+    text-decoration: none;
+    }
+
+</style>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- <link rel="stylesheet" href="css/home.css"> -->
+</head>
+
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    
+    <style>
+        
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Ubuntu", sans-serif;
+        }
+
+        :root {
+        --blue: #287bff;
+        --grey: #f5f5f5;
+        --black1: #222;
+        --black2: #999;
+        }
+        body {
+        min-height: 100vh;
+        overflow-x: hidden;
+        }
+
+      body {
+        font-family: sans-serif;
+        background-color: #f5f5f5;
+      }
+
+    /* top bar */
+    .topBar{
+    width: 100%;
+    background: var(--blue);
+    display: flex;
+    }
+
+    .topBar a {
+    text-decoration: none;
+    color: white;
+    display: inline-flex;
+    padding: 0 5px;
+    }
+    .topBar a .icon{
+    position: relative;
+    display: block;
+    line-height: 55px;
+    text-align: center;
+    font-size: 1em;
+    }
+
+    .topBar a .title{
+    position: relative;
+    display: block;
+    padding: 0px 5px;
+    line-height: 50px;
+    text-align: start;
+    white-space: nowrap;
+    }
+
+    .topBar > div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    }
+
+
+
+      h1 {
+        text-align: center;
+        margin-top: 30px;
+        color: #008cba;
+      }
+      form {
+        margin: 0 auto;
+        width: 80%;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th {
+        text-align: left;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        color: #008cba;
+      }
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #555;
+      }
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+      input[type="submit"] {
+        display: block;
+        margin: 20px auto 0;
+        padding: 10px 20px;
+        background-color: #008cba;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      input[type="submit"]:hover {
+        background-color: #006d96;
+      }
+        .navigator ul {
+        list-style: none;
+        overflow: hidden;
+        }
+        .navigator ul li {
+        float: left;
+        }
+
+        .navigator ul li:hover,
+        .navigator ul li.active {
+        background: white;
+        }
+        .navigator ul li:hover a,
+        .navigator ul li.active a {
+        color: var(--blue);
+        }
+
+
+        /* search bar */
+        .search {
+        position: relative;
+        padding: 5px;
+        width: 100%;
+        }
+        .search input {
+        width: 100%;
+        /* transition: ease-in-out, width 0.35s ease-in-out;
+        float: right; */
+        height: 40px;
+        border-radius: 40px;
+        padding: 5px 20px;
+        font-size: 18px;
+        outline: none;
+        border: 1px solid var(--black2);
+        }
+        /* .search input:focus {
+        width: 120%;
+        } */
+        .search ion-icon {
+        position: absolute;
+        top: 13px;
+        right: 10px;
+        font-size: 1.5em;
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+    <div class="topBar">
+        <a href='/'>
+            <span class="icon">
+                <ion-icon name="trending-up-outline"></ion-icon>
+            </span>
+            <span class="title">Boardgame Geek</span>
+        </a>
+
+        <div>
+            <div class="navigator">
+                <ul>
+                    <li><a href="/userprofile">
+                        <span class="icon">
+                            <ion-icon name="body-outline"></ion-icon>
+                        </span>
+                        <span class="title">${username}</span>
+                        </a>
+                    </li>
+                    <li><a href="/logout">
+                            <span class="icon">
+                                <ion-icon name="remove-outline"></ion-icon>
+                            </span>
+                            <span class="title">Logout</span>
+                        </a>
+                    </li>
+                    <li><a href="/change_interest">
+                            <span class="icon">
+                                <ion-icon name="reorder-two-outline"></ion-icon>
+                            </span>
+                            <span class="title">Change your interest</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- top search bar -->
+            <div class="search">
+                <input type="text" placeholder="#Civilization6">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+        </div>
+    </div>
+    <!-- end of top bar -->
+
+
+
+
+
+            <h1>Select your preferences:</h1>
+            <form>
+              <table>
+                <tr>
+                  <th>Genre</th>
+                  <td>
+                    <label>
+                      <input type="checkbox" name="genre" value="action">
+                      Action
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input type="checkbox" name="genre" value="comedy">
+                      Comedy
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input type="checkbox" name="genre" value="drama">
+                      Drama
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input type="checkbox" name="genre" value="horror">
+                      Horror
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input type="checkbox" name="genre" value="romance">
+                      Romance
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Rating</th>
+                  <td>
+                    <label>
+                      <input type="checkbox" name="rating" value="1">
+                      1 star
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input type="checkbox" name="rating" value="2">
+                      2 stars
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input type="checkbox" name="rating" value="3">
+                      3 stars
+                    </label>
+                  </td>
+                  <td>
+                    <label>
+                      <input type="checkbox" name="rating" value="4">
+                      4 stars
+                    </label>
+                  </td>
+
+
+                  <tr>
+                    <th>Platform</th>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="platform" value="ps4">
+                        PS4
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="platform" value="xbox">
+                        Xbox
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="platform" value="pc">
+                        PC
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="platform" value="switch">
+                        Switch
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Multiplayer</th>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="multiplayer" value="yes">
+                        Yes
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="multiplayer" value="no">
+                        No
+                      </label>
+                    </td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Price</th>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="price" value="free">
+                        Free
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="price" value="under-10">
+                        Under $10
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="price" value="under-50">
+                        Under $50
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="price" value="over-50">
+                        Over $50
+                      </label>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <th>Release Date</th>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="release-date" value="2021">
+                        2021
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="release-date" value="2020">
+                        2020
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="release-date" value="2019">
+                        2019
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="release-date" value="pre-2019">
+                        Before 2019
+                      </label>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th>Language</th>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="language" value="english">
+                        English
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="language" value="spanish">
+                        Spanish
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="language" value="german">
+                        German
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="language" value="french">
+                        French
+                      </label>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Difficulty</th>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="difficulty" value="easy">
+                        Easy
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="difficulty" value="medium">
+                        Medium
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="difficulty" value="hard">
+                        Hard
+                      </label>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Price Range</th>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="price-range" value="under-20">
+                        Under $20
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="price-range" value="20-50">
+                        $20 - $50
+                      </label>
+                    </td>
+                    <td>
+                      <label>
+                        <input type="checkbox" name="price-range" value="over-50">
+                        Over $50
+                      </label>
+                    </td>
+                  </tr>
+                  ${moredata}
+                </table>
+
+                <style>
+                .saveButton {
+                  display: inline-block;
+                  background-color: #008cba;
+                  color: #fff;
+                  padding: 10px 20px;
+                  border-radius: 5px;
+                  border: none;
+                  cursor: pointer;
+                  font-size: 16px;
+                  transition: background-color 0.3s ease-in-out;
+                }
+                
+                .saveButton:hover {
+                  background-color: #006d96;
+                }
+                </style>
+
+                <!-- <div class="saveButton"> -->
+                  <button id="save-btn" class="saveButton">Save</button>
+                <!-- </div> -->
+
+              
+
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+
+    <script>
+
+      const saveBtn = document.getElementById('save-btn');
+
+
+      saveBtn.addEventListener('click', function() {
+          // Get the user's selected interests
+          event.preventDefault();
+          const selectedGenres = Array.from(document.querySelectorAll('input[name="genre"]:checked')).map(input => input.value);
+          const selectedRatings = Array.from(document.querySelectorAll('input[name="rating"]:checked')).map(input => input.value);
+          const selectedPlatforms = Array.from(document.querySelectorAll('input[name="platform"]:checked')).map(input => input.value);
+          const isMultiplayer = document.querySelector('input[name="multiplayer"]:checked') !== null;
+          const selectedReleaseDates = Array.from(document.querySelectorAll('input[name="release-date"]:checked')).map(input => input.value);
+  
+          // Save the user's selected interests to the database
+          // ...
+
+          
+          const option= selectedGenres ; 
+          // Send data to backend
+
+
+          const data = {
+            option: "John",
+            age: 30,
+            a: option
+          };
+
+          fetch('/profile', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => {
+            console.log('Data sent successfully:', response);
+          })
+          .catch(error => {
+            console.error('Error sending data:', error);
+          });
+
+
+
+
+      });
+  </script>
+
+
+
+
+
+</body>
+
+</html>

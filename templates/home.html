@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- icon search https://ionic.io/ionicons -->
+
+
+
+<!-- Remove underline of hyperlink in css -->
+<style>
+
+a {
+  text-decoration: none;
+}
+
+</style>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoardgameGeek Recommend System</title>
+    <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+    <div class="topBar">
+        <a href='/'>
+            <span class="icon">
+                <ion-icon name="trending-up-outline"></ion-icon>
+            </span>
+            <span class="title">Boardgame Geek</span>
+        </a>
+        <div>
+            <div class="navigator">
+                <ul>
+                    <li><a href="/userprofile">
+                        <span class="icon">
+                            <ion-icon name="body-outline"></ion-icon>
+                        </span>
+                        <span class="title">${username}</span>
+                        </a>
+                    </li>
+                    <li><a href="/login">
+                            <span class="icon">
+                                <ion-icon name="remove-outline"></ion-icon>
+                            </span>
+                            <span class="title">Login</span>
+                        </a>
+                    </li>
+                    <li><a href="/register">
+                            <span class="icon">
+                                <ion-icon name="reorder-two-outline"></ion-icon>
+                            </span>
+                            <span class="title">Register</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- top search bar -->
+            <div class="search">
+                <input type="text" id="searchBar1" placeholder="#Civilization6">
+                    <ion-icon name="search-outline"></ion-icon>
+            </div>
+        </div>
+    </div>
+    <!-- end of top bar -->
+
+    <!-- details -->
+    <div class="details">
+        <!-- table -->
+        <div class="responseData">
+            <div class="cardHeader">
+                <h2>Recommend Items for ${username}</h2>
+                <label>
+                    <span class="icon">
+                        <ion-icon name="remove-outline"></ion-icon>
+                    </span>
+                    <span class="title"></span>
+                </label>
+            </div>
+
+            
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Rank</td>
+                        <td>Game Name</td>
+                        <td>Description</td>
+                        <td>Recommend Percentage</td>
+                        
+                        <!-- Last column invisible -->
+                        <td></td>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+                    <tr>
+                        <td>Loading...</td>
+                        <td>Loading...</td>
+                        <td>Loading...</td>
+                        <td><span class="status high">Loading...</span></td>
+
+                        <!-- Last column invisible -->
+                        <td></td>
+                    </tr>
+
+
+
+
+                    <!-- othergameforotheruser -->
+                    <!-- ${recommend_game_of_all_type} -->
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <!-- top ranks -->
+        <div class="rankingDesc">
+            <div class="cardHeader">
+                <h2>Top recommend game type of ${username}</h2>
+            </div>
+            <table>
+
+
+                <tr>
+                    <td>
+                    ${recommend_type}
+                    </td>
+                </tr>
+
+
+                <!-- <tr>
+
+                    
+
+                    <td>
+                        <h3>1</h3>
+                    </td>
+                    <td>
+                        
+
+                        <a href="/recommend_game_of_certain_type?username=harry&gametype=ACT">
+                            <h4>ACT<br></h4>
+                            <span>85%</span>
+                        </a>
+
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td>
+                        <h3>2</h3>
+                    </td>
+                    <td>
+                        <a href="/recommend_game_of_certain_type?username=harry&gametype=Exploration"></a>
+                        <h4>Exploration<br></h4>
+                        <span>65%</span>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3>3</h3>
+                    </td>
+                    <td>
+                        <a href="/recommend_game_of_certain_type?username=harry&gametype=Sports"></a>
+                        <h4>Sports<br></h4>
+                        <span>25%</span>
+                        </a>
+                    </td>
+                </tr> -->
+
+            </table>
+        </div>
+    </div>
+
+
+
+    <!-- end details -->
+
+    <!-- rendered table body -->
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script>
+
+        function getCookieValue(cookieName) {
+        // split the cookies by semicolons
+        const cookies = document.cookie.split(';');
+
+        // loop through each cookie to find the one with the given name
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(`${cookieName}=`)) {
+            // if the cookie is found, return its value
+            return cookie.substring(cookieName.length + 1);
+            }
+        }
+
+        // if the cookie is not found, return null
+        return null;
+        }
+
+        function search() {
+        var searchBar = document.getElementById("searchBar1");
+        var searchTerm = searchBar.value;
+        if (searchTerm.trim() !== "") {
+            window.location.href = "/search?keyword=" + searchTerm;
+        }
+        }
+
+        document.getElementById("searchBar1").addEventListener("keypress", function(event) {
+        if (event.keyCode === 13) {
+            search();
+        }
+        });
+        // stop the a redirection
+        // document.querySelectorAll('.navigator ul li a').forEach(a=>{
+        //     a.addEventListener('click', function(e){
+        //         e.preventDefault()
+        //     })
+        // });
+        // // time period option
+        // let cards = document.querySelectorAll(".navigator ul li");
+        // cards.forEach(card => {
+        //     card.onclick = () => {
+        //         // toggle css
+        //         if (!card.classList.contains("active")) {
+        //             card.classList.toggle('active');
+        //             cards.forEach(cardCss => {
+        //                 if (cardCss != card)
+        //                     cardCss.classList.remove("active")
+        //             })
+        //         }
+        //         // change title in Rankings
+        //         document.querySelector('.cardHeader label').innerHTML = card.querySelector("a").innerHTML;
+        //         // request json
+        //         promiseReq('GET', card.querySelector("a").href)
+        //     }
+        // })
+        
+
+        document.querySelectorAll('.rankingDesc table tr td a').forEach(a=>{
+            a.addEventListener('click', function(e){
+                e.preventDefault()
+                // let tbody2 = document.querySelector(".responseData table tbody");
+                // tbody2.innerHTML = "";
+            })
+        });
+
+        let cards2 = document.querySelectorAll(".rankingDesc table tr td");
+        cards2.forEach(card2 => {
+            card2.onclick = () => {
+                // toggle css
+                if (!card2.classList.contains("active")) {
+                    card2.classList.toggle('active');
+                    cards2.forEach(cardCss => {
+                        if (cardCss != card2)
+                            cardCss.classList.remove("active")
+                    })
+                }
+
+
+
+                // change title in Rankings
+                document.querySelector('.cardHeader label').innerHTML = card2.querySelector("h4").innerHTML;
+                // request json
+                promiseReq('GET', card2.querySelector("a").href)
+            }
+        })
+
+
+
+
+
+
+        /*
+        The rendered table. It reads the hidden DIV which is a list of
+        dictionary containing {rank, name, amount, pop, link}
+        */
+        const promiseReq = (method, url) => {
+
+
+            return new Promise(function (resolve, reject) {
+                var xhr = new XMLHttpRequest();
+                xhr.open(method, url);
+                xhr.onload = function () {
+                    if (this.status >= 200 && this.status < 300) {
+                        var tableData = JSON.parse(xhr.response);
+                        
+                        let tbody = document.querySelector(".responseData table tbody");
+                        tbody.innerHTML = "";
+                        tableData.forEach(row => {
+                            let appendRow = `<tr><td>${row.rank}</td>
+                            <td>${row.name}</td>
+                            <td>${row.description}</td>`;
+
+
+                            let popularity = parseFloat(row.pop) / 100;
+                            let popEl = document.createElement("span");
+                            popEl.innerHTML = row.pop+"%";
+                            popEl.classList.add("status");
+                            if (popularity >= 0.7) {
+                                popEl.classList.add("high");
+                            }
+                            else if (popularity >= 0.4) {
+                                popEl.classList.add("medium");
+                            }
+                            else if (popularity < 0.4) {
+                                popEl.classList.add("low");
+                            }
+                            appendRow += `<td>${popEl.outerHTML}</td>
+                            <td>${row.url}</td></tr>`;
+                            tbody.innerHTML += appendRow;
+                        })
+                        
+                        // click on the row to navigate to the link
+                        tbody.querySelectorAll("tr").forEach(row => {
+                            row.addEventListener("click", function (e) {//e.currentTarget === this
+                                window.open(this.lastChild.innerText)
+                            })
+                        });
+                        console.log(`Reload the table for ${url}`);
+                        resolve()
+                    } else {
+                        reject({
+                            status: this.status,
+                            statusText: xhr.statusText
+                        });
+                    }
+                };
+                xhr.onerror = function () {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                };
+                xhr.send();
+
+            });
+        }
+
+
+        // handle trend
+        promiseReq('GET', "/recommend_game_of_certain_type?")
+        
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+
+
+.r {
+    position: relative;
+    width: 10%;
+    height: 40%;
+    float:left;
+    top:0px;
+    background-color: rgba(190, 87, 3, 0.16);
+    /* border-style: solid solid solid solid; */ 
+}
+/* .profileimg{
+    position: absolute;
+    float: left;;
+    top:100px;
+}  */
+button{
+    position:relative;
+    right:0px;
+    width:125px;
+    height:30px;
+}
+
+
+
+

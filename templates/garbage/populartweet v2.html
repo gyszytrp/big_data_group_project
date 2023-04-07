@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- icon search https://ionic.io/ionicons -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Tweets</title>
+    <link rel="stylesheet" href="css/pop_style2.css">
+</head>
+
+<body>
+    <div class="topBar">
+        <a href='/'>
+            <span class="icon">
+                <ion-icon name="trending-up-outline"></ion-icon>
+            </span>
+            <span class="title">Cryptocurrency Trending</span>
+        </a>
+        <div>
+            <div class="navigator">
+                <ul>
+                    <li><a href="/trend?t=12">
+                            <span class="icon">
+                                <ion-icon name="hourglass-outline"></ion-icon>
+                            </span>
+                            <span class="title">12 hr</span>
+                        </a>
+                    </li>
+                    <li><a href="/trend?t=24">
+                            <span class="icon">
+                                <ion-icon name="hourglass-outline"></ion-icon>
+                            </span>
+                            <span class="title">24 hr</span>
+                        </a>
+                    </li>
+                    <li><a href="/trend?t=168">
+                            <span class="icon">
+                                <ion-icon name="today-outline"></ion-icon>
+                            </span>
+                            <span class="title">7 days</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- top search bar -->
+            <div class="search">
+                <input type="text" placeholder="#Bitcoin">
+                <ion-icon name="search-outline"></ion-icon>
+            </div>
+        </div>
+    </div>
+    <!-- end of top bar -->
+
+    <!-- cardDetails -->
+    <div class="cardDetails">
+        <!-- <div class="tweet">
+            <div class="author">
+                <span>
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </span><span>
+                    <a href="https://twitter.com/GoingParabolic" target="_blank">Jason
+                        A. Williams “Parabolic Guy”</a>
+                </span>
+            </div>
+            <div class="content">
+                <a href="https://twitter.com/GoingParabolic/status/1453137261072195585" target="_blank">OK ASIA.
+                    Here is the plan ~ SEND IT. And to start off the full send I bought the
+                    perfect amount of #bitcoin. If you know you know. https://t.co/SXmCFON0gi</a>
+                <span class="time">
+                    2021-10-26 23:11:35
+                </span>
+            </div>
+            <div class="status">
+                <div>
+                    <span>
+                        <ion-icon name="pulse-outline" title="popularity"></ion-icon>
+                    </span>
+                    <span>
+                        29.21
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        <ion-icon name="heart-outline" title="like"></ion-icon>
+                    </span><span>
+                        1064
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        <ion-icon name="repeat-outline" title="retweet"></ion-icon>
+                    </span><span>
+                        42
+                    </span>
+                </div>
+                <div><span>
+                        <ion-icon name="chatbubbles-outline" title="comment"></ion-icon>
+                    </span><span>
+                        124
+                    </span>
+                </div>
+            </div>
+        </div> -->
+        <!-- end twitter -->
+    </div>
+    <!-- end cardDetails -->
+    <!-- rendered table body -->
+    <div id="renderTable" style="display: none;">
+        ${trendtable}
+    </div>
+    <!-- rendered table body -->
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script>
+        // stop the a redirection
+        document.querySelectorAll('.navigator ul li a').forEach(a => {
+            a.addEventListener('click', function (e) {
+                e.preventDefault()
+            })
+        });
+        // time period option
+        let cards = document.querySelectorAll(".navigator ul li");
+        cards.forEach(card => {
+            card.onclick = () => {
+                // toggle css
+                if (!card.classList.contains("active")) {
+                    card.classList.toggle('active');
+                    cards.forEach(cardCss => {
+                        if (cardCss != card)
+                            cardCss.classList.remove("active")
+                    })
+                }
+                // change title in Rankings
+                document.querySelector('.cardHeader label').innerHTML = card.querySelector("a").innerHTML;
+                // request json
+                promiseReq('GET', card.querySelector("a").href)
+            }
+        })
+
+        /*
+        The rendered table. It reads the hidden DIV which is a list of
+        dictionary containing {"content","contLink","like","comment","retweet","pop","author","authorLink","time"}
+        */
+        let tableData = JSON.parse(document.querySelector("#renderTable").innerText), cardDetails = document.querySelector(".cardDetails");
+        tableData.forEach(d => {
+            let tweet = document.createElement('div');
+            tweet.classList.add('tweet');
+            tweet.innerHTML = `<div class="author"> <span> <ion-icon name="person-circle-outline"></ion-icon> </span><span> <a href="${d.authorLink}" target="_blank">${d.author}</a> </span> </div> <div class="content"> <a href="${d.contLink}" target="_blank">${d.content}</a> <span class="time"> ${d.time} </span> </div> <div class="status"> <div> <span> <ion-icon name="pulse-outline" title="popularity"></ion-icon> </span> <span> ${parseFloat(d.pop).toFixed(2)} </span> </div> <div> <span> <ion-icon name="heart-outline" title="like"></ion-icon> </span><span> ${d.like} </span> </div> <div> <span> <ion-icon name="repeat-outline" title="retweet"></ion-icon> </span><span> ${d.retweet} </span> </div> <div><span> <ion-icon name="chatbubbles-outline" title="comment"></ion-icon> </span><span> ${d.comment} </span> </div> </div>`;
+            cardDetails.appendChild(tweet);
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,1 +1,3 @@
-# big_data_group_project
+# Use sudo python3 sslrun.py to run web with https
+# Use ython3 run.py to run web with http
+

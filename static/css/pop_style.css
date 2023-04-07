@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+}
+:root {
+  --blue: #287bff;
+  --white: #fff;
+  --grey: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+.navigator {
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigator.active {
+  width: 80px;
+}
+.navigator ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.navigator ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.navigator ul li:hover {
+  background: var(--white);
+}
+/* .navigator ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+} */
+.navigator ul li a {
+  position: relative;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigator ul li:hover a {
+  color: var(--blue);
+}
+.navigator ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 70px;
+  text-align: center;
+  font-size: 1.75em;
+}
+
+.navigator ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* Right corner curve */
+.navigator ul li:hover a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigator ul li:hover a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* main component */
+.main {
+  position: absolute;
+  width: calc(100% - 200px);
+  left: 200px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+.topBar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em;
+  cursor: pointer;
+}
+/* card */
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+.cardBox .card {
+  position: relative;
+  background: var(--white);
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.cardBox .card .cardTxt {
+  color: var(--black2);
+  font-size: 0.9em;
+}
+.cardBox .card .number {
+  position: relative;
+  font-weight: 500;
+  font-size: 1.5em;
+  color: var(--blue);
+}
+.cardBox .card .iconBox {
+  font-size: 2.5em;
+  color: var(--black2);
+  line-height: 1em;
+}
+.cardBox .card .iconBox ion-icon {
+  vertical-align: middle;
+}
+.cardBox .card:hover,
+.cardBox .card.active {
+  background: var(--blue);
+}
+.cardBox .card:hover .number,
+.cardBox .card:hover .cardTxt,
+.cardBox .card:hover .iconBox,
+.cardBox .card.active .number,
+.cardBox .card.active .cardTxt,
+.cardBox .card.active .iconBox {
+  color: var(--white);
+}
+
+/* details - both tables*/
+.cardDetails {
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  /* display: grid; */
+  /* grid-template-columns: repeat(2, 1fr);
+  grid-gap: 3px; */
+  display: flex;
+  flex-wrap: wrap;
+}
+.cardDetails .tweet {
+  margin: 3px;
+  padding: 5px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  outline: 0;
+  border: 1px solid transparent;
+  max-width: 280px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.cardDetails .tweet:hover
+{
+    box-shadow: 0 0 6px var(--blue);
+}
+
+.cardDetails .tweet .author {
+  display: flex;
+  color: var(--black2);
+}
+.cardDetails .tweet .author a {
+  text-decoration: none;
+  color: var(--black2);
+}
+.cardDetails .tweet .content {
+  padding: 4px 2px;
+  margin: 4px 2px;
+  box-shadow: 0 1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+}
+.cardDetails .tweet .content a {
+  font-size: 1em;
+  color: var(--black1);
+  text-decoration: none;
+}
+.cardDetails .tweet .content .time {
+  font-size: 0.8em;
+  color: var(--black2);
+  text-align: right;
+  margin-top: 5px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.cardDetails .tweet .status {
+  display: flex;
+  justify-content: space-between;
+  color: var(--black2);
+}
+.cardDetails .tweet .status div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 2px;
+  padding: 2px;
+}
+.cardDetails .tweet .status div span {
+  margin: 1px;
+}
+
+/* responsive */
+@media (max-width: 991px) {
+  .navigator {
+    left: -200px;
+  }
+  .navigator.active {
+    left: 0;
+    width: 200px;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .search {
+    width: 250px;
+  }
+}
+
+@media (max-width: 621px) {
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .details {
+    grid-template-columns: 1fr;
+  }
+  .details .responseData {
+    overflow-x: auto;
+  }
+  .search {
+    width: 150px;
+  }
+}

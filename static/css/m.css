@@ -1,0 +1,226 @@
+.left {
+    position: relative;
+    width: 99%;
+    height: 100%;
+    right: 150px;
+    top: 50px;
+    /* background-color: rgba(128,142,255,0.14); */
+    /* border-right: rgba(2,2,3,1) solid 1px; */
+    /* text-align: left; */
+}
+.right {
+    position: absolute;
+    width: 15%;
+    height: 50%;
+    bottom: 50px;
+    right: 200px;
+    background-color: rgba(128,142,255,0.16);
+    overflow: scroll;
+}
+
+/* .wholepage{
+    background-color: rgba(128,142,255,0.16);
+} */
+
+.myButton1 {
+	box-shadow: 3px 4px 0px 0px #8a2a21;
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+	background-color:#c62d1f;
+	border-radius:18px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
+}
+.myButton1:hover {
+	background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+	background-color:#f24437;
+}
+.myButton1:active {
+	position:relative;
+	top:1px;
+}
+
+
+.myButton2 {
+	box-shadow: 3px 4px 0px 0px #3dc21b;
+	background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
+	background-color:#44c767;
+	border-radius:18px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+.myButton2:hover {
+	background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
+	background-color:#5cbf2a;
+}
+.myButton2:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+.bigButton {
+    width:400px;
+ box-shadow: 3px 4px 0px 0px #899599;
+ background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+ background-color:#ededed;
+ /*border-radius:15px;*/
+ /*border:1px solid #d6bcd6;*/
+ display:inline-block;
+ cursor:pointer;
+ color:#3a8a9e;
+ font-family:Arial;
+ font-size:20px;
+ /* padding:70px 200px; */
+ text-decoration:none;
+ text-shadow:0px 1px 0px #e1e2ed;
+}
+.bigButton:hover {
+ background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+ background-color:#bab1ba;
+}
+.bigButton:active {
+ position:relative;
+ top:1px;
+}
+
+
+
+.m-box{
+    width: 55%;
+    height: 450px;
+    border: black solid 2px;
+    background-color: rgba(118,222,155,0.14);
+}
+.m-box .m-head{
+    /* position: relative;
+    top: 0px;
+    left: 0px;*/
+    height: 40px;
+    border-bottom: black solid 2px;
+}
+.m-box .m-head .m-username{
+    position:relative;
+    top: 0px;
+    right: 130px;
+    /* margin-top: 15px; */
+    margin-right:401px;
+    font-size: 22px
+}
+
+.m-box .m-body{
+    overflow: scroll;
+    height: 270px;
+    border-bottom: black solid 2px;
+    background-color: rgb(255, 255, 255);
+}
+.m-box .m-body .m-left{
+    padding: 5px;
+    text-align: left;
+
+}
+.m-box .m-body .m-right{
+    padding: 5px;
+    text-align: right;
+
+}
+
+
+
+
+
+.m-box .m-footer .m-input textarea{
+    margin-left: 5px;
+    width: 94%;
+    height: 100px;
+    overflow: -moz-scrollbars-horizontal;
+    line-height: 20px;
+}
+
+.m-person-head{
+    /* font-size: 22px; */
+    position: relative;
+    bottom: 19px;
+    left: 55px;
+    /* border: black solid 2px; */
+}
+.m-person{
+    background-color: rgb(255, 255, 255);
+    margin: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+
+
+li a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+html, body, {
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+
+
+
+
+
+
+
+
+.profile {
+    float:right;
+}
